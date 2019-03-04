@@ -1,4 +1,4 @@
-import express from "express"
+import express, { response } from "express"
 import { Request, Response, NextFunction } from "express"
 
 import errorHandler from "errorhandler"
@@ -9,6 +9,9 @@ import morgan from "morgan"
 import dotenv from "dotenv"
 import config from "./config"
 import projectInfo from "./../package.json"
+
+import userRoutes from "./resources/users/routes"
+import authRoutes from "./resources/auth/routes"
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -43,11 +46,20 @@ app.get("/", (req: Request, res: Response) => {
     version: projectInfo.version
   })
 })
+app.use("/auth", authRoutes)
 //Routes with protection
+app.use("/users", userRoutes)
 
 //Error handle
 if (config.env === "development") {
-  app.use(errorHandler)
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    const title = `Error in ${req.method} ${req.url}`
+    res.json({
+      error: true,
+      title,
+      errors: err
+    })
+  })
 } else {
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err)
