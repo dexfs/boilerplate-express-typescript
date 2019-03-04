@@ -1,23 +1,18 @@
 import merge from "lodash/merge"
-const { NODE_ENV: env = "development", SERVER_PORT = 3000 } = process.env
+const {
+  NODE_ENV: env = "development",
+  SERVER_PORT: port = 3000,
+  JWT_SECRET = "secret",
+  JWT_EXPIRATION = 5000
+} = process.env
 const baseConfig = {
   env,
-  port: SERVER_PORT
+  port
 }
 
-let envConfig = {}
-
-switch (env) {
-  case "dev":
-  case "development":
-    envConfig = require("./dev").config
-    break
-  case "test":
-  case "testing":
-    envConfig = require("./testing").config
-    break
-  default:
-    envConfig = require("./prod").config
+const envConfig = {
+  JWT_SECRET,
+  JWT_EXPIRATION
 }
 
 export default merge(baseConfig, envConfig)
