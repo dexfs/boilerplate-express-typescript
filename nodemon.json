@@ -10,14 +10,10 @@
     "js": "node"
   },
   "runOnChangeOnly": false,
-  "watch": [
-    "dist/**/*.js",
-    "dist/**/*.graphql",
-    "dist/**/*.gql"
-  ],
+  "watch": ["src"],
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js,json,graphql",
-  "exec": "dist/index.js"
+  "ext": "ts",
+  "exec": "ts-node ./src/index.ts"
 }
