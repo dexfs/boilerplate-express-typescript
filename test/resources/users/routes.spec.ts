@@ -4,7 +4,7 @@ describe("User Router", () => {
   const routes = [
     { name: "me", path: "/me", method: "get" },
     { name: "Create user", path: "/", method: "post" },
-    { name: "Update user", path: "/", method: "put" }
+    { name: "Update user", path: "/:id", method: "put" }
   ]
   routes.forEach((route) => {
     test(`the route [${route.name} - ${route.method} ${route.path} ] should be with correct path and http verb`, () => {

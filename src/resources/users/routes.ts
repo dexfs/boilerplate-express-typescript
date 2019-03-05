@@ -4,8 +4,8 @@ import { createValidation, updateValidation } from "./middleware"
 
 const router = Router()
 
-router.use("/me", me)
-router.put("/", updateValidation, update)
+router.get("/me", me)
+router.put("/:id", updateValidation, update)
 router.post("/", createValidation, create)
 
 export default router

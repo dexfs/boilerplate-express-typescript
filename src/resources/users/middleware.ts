@@ -5,7 +5,6 @@ export const createValidation = async (req: Request, res: Response, next: NextFu
     await fieldsRequired(req.body)
     next()
   } catch (error) {
-    console.log(error)
     return res.status(400).json({
       error: true,
       errors: error.errors
@@ -17,9 +16,11 @@ export const updateValidation = async (req: Request, res: Response, next: NextFu
   try {
     await fieldsRequired({
       ...req.body,
-      ...req.param
+      ...req.params
     })
+    next()
   } catch (error) {
+    console.log("VALIDATION", error)
     return res.status(400).json({
       error: true,
       errors: error.errors

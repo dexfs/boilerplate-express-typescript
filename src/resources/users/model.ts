@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 
-export type UserModel = mongoose.Document & {
+export interface UserModel extends mongoose.Document {
   name: string,
   email: string,
   password: string,
@@ -12,6 +12,11 @@ type checkPasswordFunction = (candidatePassword: string) => Promise<any>
 
 const userSchema = new mongoose.Schema(
   {
+    _id: {
+      type: mongoose.Types.ObjectId,
+      auto: true
+    },
+    name: String,
     email: {
       type: String,
       required: true,
@@ -26,15 +31,16 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-userSchema.pre("save", (next) => {
+userSchema.pre("save", function(next) {
+  const user: any = this
   if (!this.isModified("password")) {
     return next()
   }
-  bcrypt.hash(this.password, 8, (err, hash) => {
+  bcrypt.hash(user.password, 8, (err, hash) => {
     if (err) {
       return next(err)
     }
-    this.password = hash
+    user.password = hash
     next()
   })
 })
