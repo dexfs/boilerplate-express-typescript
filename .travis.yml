@@ -1,11 +1,9 @@
-{
-  "language": "node_js",
-  "node_js": "11",
-  "services": [
-    "mongodb"
-  ],
-  "script": [
-    "yarn run build",
-    "yarn run test"
-  ]
-}
+language: node_js
+node_js:
+  - "11.10.0"
+cache:
+  yarn: true
+  direcotires:
+    - node_modules
+services:
+  - mongodb
