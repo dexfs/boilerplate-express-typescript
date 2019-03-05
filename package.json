@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-express-typescript",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A starting point for Node.js express with typescript",
   "author": "Andre Santos",
   "license": "MIT",
