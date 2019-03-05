@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { signup, signin } from "./authController"
+import { signup, signin } from "./controller"
 import { createValidation } from "./../users/middleware"
 const router: Router = Router()
 
