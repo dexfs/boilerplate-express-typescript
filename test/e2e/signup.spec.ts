@@ -1,5 +1,5 @@
 import request from "supertest"
-import { app } from "./../../src/server"
+import { app } from "../../src/server"
 import cuid from "cuid"
 describe("Signup", () => {
   test("When a valid user registered should be return a token", async () => {

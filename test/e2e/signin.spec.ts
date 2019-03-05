@@ -1,7 +1,7 @@
 import request from "supertest"
-import { app } from "./../../src/server"
+import { app } from "../../src/server"
 import cuid from "cuid"
-import User from "./../../src/resources/users/model"
+import User from "../../src/resources/users/model"
 
 describe("Signin", () => {
   describe("Signin with a valid credentials", () => {
