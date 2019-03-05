@@ -20,7 +20,6 @@ export const verifyToken = async (token) => {
     const resultVerifyToken = await jwtVerify(token, config.JWT_SECRET)
     return resultVerifyToken
   } catch (error) {
-    console.error("Error in VerifyToken", error)
     return {
       error: true,
       message: "Error when verifying the token"

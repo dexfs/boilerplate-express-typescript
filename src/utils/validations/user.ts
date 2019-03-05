@@ -7,8 +7,16 @@ const schema = yup.object().shape({
     return yup.string().notRequired()
   }),
   name: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().required()
+  email: yup.string().when("id", {
+    is: undefined,
+    then: yup.string().email().required(),
+    otherwise: yup.string().email()
+  }),
+  password: yup.string().when("id", {
+    is: undefined,
+    then: yup.string().required(),
+    otherwise: yup.string()
+  })
 })
 
 export const fieldsRequired = async (data: object, isThrowError: boolean = false): Promise<any> => {
