@@ -1,7 +1,5 @@
-import express, { response } from "express"
-import { Request, Response, NextFunction } from "express"
+import express, { Request, Response, NextFunction } from "express"
 
-import errorHandler from "errorhandler"
 import { json, urlencoded } from "body-parser"
 import cors from "cors"
 import helmet from "helmet"
@@ -12,6 +10,8 @@ import projectInfo from "./../package.json"
 
 import userRoutes from "./resources/users/routes"
 import authRoutes from "./resources/auth/routes"
+
+import protect from "./middlawares/protect"
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -48,7 +48,7 @@ app.get("/", (req: Request, res: Response) => {
 })
 app.use("/auth", authRoutes)
 //Routes with protection
-app.use("/users", userRoutes)
+app.use("/api/users", protect, userRoutes)
 
 //Error handle
 if (config.env === "development") {
