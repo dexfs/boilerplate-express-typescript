@@ -16,7 +16,7 @@
     "test": "jest --forceExit --coverage --verbose --detectOpenHandles"
   },
   "dependencies": {
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
